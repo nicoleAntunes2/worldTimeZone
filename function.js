@@ -1,6 +1,6 @@
 let selectedCityInterval = null; // Variável para armazenar o intervalo da cidade selecionada
 
-// Atualiza o horário local
+// horário local
 function updateLocalTime() {
   const localTimeElement = document.getElementById("local-time");
   const now = new Date();
@@ -11,19 +11,18 @@ function updateLocalTime() {
   });
 }
 
-// Atualiza o horário da cidade selecionada
 function updateSelectedCityTime() {
   const timezoneSelect = document.getElementById("timezone-select");
   const selectedTimeElement = document.getElementById("selected-time");
   const timezone = timezoneSelect.value;
 
   if (timezone) {
-    // Limpa o intervalo anterior, caso exista
+ 
     if (selectedCityInterval) {
       clearInterval(selectedCityInterval);
     }
 
-    // Atualiza o horário da cidade selecionada em tempo real
+ 
     selectedCityInterval = setInterval(() => {
       const now = new Date();
       const time = now.toLocaleTimeString("en-US", {
@@ -33,7 +32,7 @@ function updateSelectedCityTime() {
         second: "2-digit",
       });
 
-      // Atualizando a exibição com o nome da cidade e o horário atual
+      // Atualizando NOME - FILTRO 
       selectedTimeElement.innerHTML = `
         <p>Selected City: ${
           timezoneSelect.options[timezoneSelect.selectedIndex].text
@@ -57,9 +56,9 @@ function showAllCitiesTime() {
   const allCitiesDiv = document.getElementById("all-cities");
   allCitiesDiv.innerHTML = "";
 
-  // Atualiza os horários de todas as cidades em tempo real
+  // Atualiza todas  cidades   real
   setInterval(() => {
-    allCitiesDiv.innerHTML = ""; // Limpa os horários antes de atualizar
+    allCitiesDiv.innerHTML = ""; // Limpa 
 
     Object.entries(cities).forEach(([timezone, city]) => {
       const now = new Date();
@@ -77,13 +76,13 @@ function showAllCitiesTime() {
           </div>
         `;
 
-      // Atualiza a exibição com o horário da cidade
+      // Atualiza 
       allCitiesDiv.innerHTML += cityTimeHtml;
     });
   }, 1000); // Atualiza a cada segundo
 }
 
-// Adiciona os eventos aos elementos
+// eventos aos elementos
 document.addEventListener("DOMContentLoaded", () => {
   updateLocalTime();
   setInterval(updateLocalTime, 1000); // Atualiza o horário local a cada segundo
